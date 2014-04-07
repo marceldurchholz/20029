@@ -1,0 +1,222 @@
+
+/*!
+* APPinaut Mobile CSS 0.9
+* http://appinaut.com
+*
+* Copyright 2013 DigitalVerve - Digital Solutions
+* http://digitalverve.de
+*
+*/
+
+
+/* MAIN */
+/*-----------------------------------------------------------------------------------------------------------*/
+.scrollable {
+	overflow-y: scroll !important;
+	-webkit-overflow-scrolling: touch !important;
+	background: url(../images/quadbg001.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+/* iOS specific fix, don't use it on Android devices */
+.scrollable > * {
+	-webkit-transform: translateZ(0px) !important;
+}
+
+.modalWindow {
+	width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 1500;
+		b/ackground: #26466D;
+		background: url(../images/quadbg001.jpg) no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		opacity: 1;
+}
+
+.ui-loader{
+	z-index: 1501;
+}
+#body {
+	background-color:#FFF;
+	overflow:hidden !important;
+	-ms-user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+#flexiblecontent {
+	b/ackground-color:#333 !important;
+	position:fixed !important;
+	t/op:47px;
+}
+.ui-page-active {
+	position:fixed !important;
+	top:0px !important;
+}
+#menuelementdiv {
+	background-color:#333;
+	position:fixed !important;
+	top:0px !important;
+	margin-top:46px !important;
+	width:220px !important;
+	z-index:0 !important;
+	height:100% !important;
+	overflow-y:auto;
+}
+#page-content {
+	position:fixed !important;
+	t/op:47px;
+	b/ackground-color:#fff;
+	margin:0px !important;
+	padding:0px !important;
+	height:100% !important; 
+	width:100% !important;
+	min-height:100% !important;
+}
+.containing-element .ui-slider-switch { 
+	width: 100%;
+}
+
+.blink_me {
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	
+	-moz-animation-name: blinker;
+	-moz-animation-duration: 1s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+	
+	animation-name: blinker;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+	0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+}
+
+
+.ui-slider {
+	width : 100% !important;
+	b/ackground : yellow;
+}
+input.ui-slider-input {
+	display : none !important;
+}
+.ui-slider-handle {
+	b/ackground : red;
+}
+.ui-slider-track {
+	margin-left: 15px !important;
+}
+.ui-br {
+	border:0 !important;
+}
+
+
+
+
+
+
+
+/*** sortable table styles *****/
+
+strong, b { font-weight: bold; } 
+
+table { border-collapse: collapse; border-spacing: 0; border: 0; }
+img { border: 0; max-width: 100%; }
+
+.sortabletable {
+  margin: 0 auto;
+  f/ont-size: 1.2em;
+  m/argin-bottom: 15px;
+}
+
+.sortabletable thead {
+  cursor: pointer;
+  b/ackground: #c9dff0;
+}
+.sortabletable thead tr th { 
+  f/ont-weight: bold;
+  p/adding: 12px 30px;
+  p/adding-left: 42px;
+  p/adding-left: 22px;
+  padding:0px !important;
+}
+.sortabletable thead tr th span { 
+  padding-right: 20px;
+  b/ackground-repeat: no-repeat;
+  b/ackground-position: 100% 100%;
+}
+
+.sortabletable thead tr th.headerSortUp, .sortabletable thead tr th.headerSortDown {
+  padding-right: 20px;
+  padding-left: 20px;
+  b/ackground: #acc8dd;
+}
+
+.sortabletable thead tr th.headerSortUp span {
+  background: url(../images/up-arrow.png);
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+.sortabletable thead tr th.headerSortDown span {
+  background: url(../images/down-arrow.png);
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+.sortabletable tbody tr { 
+  c/olor: #555;
+}
+.sortabletable tbody tr td, .sortabletable thead tr td {
+  border:0;
+  text-align: center;
+  p/adding: 15px 10px;
+  width:100% !important;
+  padding: 0px;
+}
+
+.interestcheckbox > * {
+	font-weight:normal !important;
+	font-size:11px !important;
+}
+
+.ui-link {
+	cursor: pointer;
+}
+
+.red {
+	color: red !important;
+}
+
+#functionBar span a img {
+	h/eight:26px !important;
+	padding-left:5px;
+}
