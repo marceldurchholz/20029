@@ -1,8 +1,8 @@
 // LearningStreamNestedView.js
 // -------
-define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection", "text!templates/LearningStreamNestedPage.html", "text!templates/sidemenusList.html", "views/SidemenuView"],
+define(["jquery", "backbone", "text!templates/LearningStreamNestedPage.html"],
 
-    function($, Backbone, VideoModel, videosCollection, LearningStreamNestedPage, sidemenusList, SidemenuView){
+    function($, Backbone, LearningStreamNestedPage){
 		
 		var LearningStreamNestedViewVar = Backbone.View.extend({
 			
@@ -33,6 +33,7 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 				var _thisViewLearningStreamNested = this;
 				
 				// dpd.videos.on('create', function(videoData) {
+				/*
 				dpd.videos.once('create', function(videoData) {
 					// renderMessage(message);
 					// doAlert('new video existing');
@@ -42,7 +43,7 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 					// window.location.reload();
 					_thisViewLearningStreamNested.render();
 				});
-
+				*/
 				
 				/*
 				// this.$el.off('click','.clickRow').on('click','.clickRow',function(){_thisViewLearningStreamNested.clicked(e);});
@@ -92,9 +93,8 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 				}).done(function(me) {
 					// alert(me.id);
 					_thisViewLearningStreamNested.me = me;
-				if (_thisViewLearningStreamNested.me.interests == undefined) _thisViewLearningStreamNested.me.interests = new Array();
+					if (_thisViewLearningStreamNested.me.interests == undefined) _thisViewLearningStreamNested.me.interests = new Array();
 				});
-
 				
 				var requestUrl = "http://dominik-lohmann.de:5000/videos?active=true&deleted=false";
 				if (window.system.master!=true) requestUrl = requestUrl + "&uploader="+window.system.aoid;
@@ -102,11 +102,28 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 					url: requestUrl,
 					async: false
 				}).done(function(videoData) {
+					console.log(videoData);
 					_.each(videoData, function(value, index, list) {
 						var exists = $.inArray( value.topic, _thisViewLearningStreamNested.me.interests );
-						if (_thisViewLearningStreamNested.me.interests == undefined) exists=1;
-						else if (_thisViewLearningStreamNested.me.interests.length==0) exists=1;
-						if (exists>-1 || value.uploader == me.id) {
+						if (_thisViewLearningStreamNested.me.interests.length==0) exists=1;
+						
+						if (value.usergroups == undefined) value.usergroups = new Array();
+						if (window.me.usergroups == undefined) window.me.usergroups = new Array();
+						if (value.usergroups.length>0) {
+							exists=0;
+							$.each( value.usergroups, function( key, role ) {
+								$.each( window.me.usergroups, function( keyme, valueme ) {
+									if (role==valueme) {
+										exists=1;
+										return(false);
+									}
+								});
+							});
+						}
+						
+						if (value.uploader == me.id) exists=1;
+						
+						if (exists>0) {
 							value.ccat = 'video';
 							value.icon = 'images/icon-multimedia-60.png';
 							value.href = '#videos/details/view/'+value.id;
@@ -114,21 +131,39 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 								_thisViewLearningStreamNested.streamData.push(value);
 							}
 						}
+						
 					});
 				});
 				// console.log(_thisViewLearningStreamNested.streamDatairefire);
 				
-				var requestUrl = "http://dominik-lohmann.de:5000/cards?active=true&deleted=false&public=true";
+				var requestUrl = "http://dominik-lohmann.de:5000/cards?active=true&deleted=false";
 				if (window.system.master!=true) requestUrl = requestUrl + "&uploader="+window.system.aoid;
 				$.ajax({
 					url: requestUrl,
 					async: false
 				}).done(function(cardData) {
+					console.log(cardData);
 					_.each(cardData, function(value, index, list) {
 						var exists = $.inArray( value.topic, _thisViewLearningStreamNested.me.interests );
-						if (_thisViewLearningStreamNested.me.interests == undefined) exists=1;
-						else if (_thisViewLearningStreamNested.me.interests.length==0) exists=1;
-						if (exists>-1 || value.uploader == me.id) {
+						if (_thisViewLearningStreamNested.me.interests.length==0) exists=1;
+						
+						if (value.usergroups == undefined) value.usergroups = new Array();
+						if (window.me.usergroups == undefined) window.me.usergroups = new Array();
+						if (value.usergroups.length>0) {
+							exists=0;
+							$.each( value.usergroups, function( key, role ) {
+								$.each( window.me.usergroups, function( keyme, valueme ) {
+									if (role==valueme) {
+										exists=1;
+										return(false);
+									}
+								});
+							});
+						}
+						
+						if (value.uploader == me.id) exists=1;
+						
+						if (exists>0) {
 							value.ccat = 'card';
 							value.icon = 'images/icon-cards-60.png';
 							value.href = '#cards/details/view/'+value.id;
@@ -166,6 +201,7 @@ define(["jquery", "backbone", "models/VideoModel", "collections/videosCollection
 					value.title = 'Noch keine Inhalte!';
 					value.topic = 'Bitte Interessen auswählen...';
 					value.description = ' Klicken Sie hier um auf Ihre Profileinstellungen zu gelangen...';
+					value.uploaderdata = new Array();
 					_thisViewLearningStreamNested.streamData.push(value);
 				}
 				// alert(_thisViewLearningStreamNested.streamData.length);

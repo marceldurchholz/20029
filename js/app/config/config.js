@@ -32,7 +32,7 @@ require.config({
       "jelastic": "../jquery.elastic.source",
 
       "jtablesorter": "../libs/jquery.tablesorter",
-
+	  
       "videojs": "../video-js/video",
 
       "backbone": "../libs/backbone",
@@ -45,6 +45,8 @@ require.config({
       // Plugins
       // -------
       "backbone.validateAll": "../libs/plugins/Backbone.validateAll",
+
+	  "jtouchpunch": "../libs/plugins/jquery.ui.touch-punch",
 
       "bootstrap": "../libs/plugins/bootstrap",
 
@@ -68,6 +70,8 @@ require.config({
 
       // jQueryUI
       "jqueryui": ["jquery"],
+      
+	  "jtouchpunch": ["jqueryui"],
 	  
 	  "jexpander": ["jquery"],
 
@@ -77,7 +81,6 @@ require.config({
 	  
 	  "functions": ["jquery", "videojs"],
 	  
-      // jQueryUI
       "videojs": {
 		"deps": ["jquery"],
 		"exports": "videojs"
@@ -87,7 +90,7 @@ require.config({
       "backbone": {
 
         // Depends on underscore/lodash and jQuery // "jquerypulltorefresh", 
-        "deps": ["functions", "underscore", "jquery", "jquerymobile", "jexpander", "jelastic", "jtablesorter"],
+        "deps": ["functions", "underscore", "jquery", "jquerymobile", "jqueryui", "jexpander", "jelastic", "jtablesorter"],
 
         // Exports the global window.Backbone object
         "exports": "Backbone"
